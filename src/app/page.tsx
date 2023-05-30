@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import RecommendationGenerator from "@/components/RecommendationGenerator/RecommendationGenerator";
 import React from "react";
 
@@ -22,13 +22,21 @@ export default function Home() {
   };
 
   const renderRecommendationGenerator = (): JSX.Element => {
-    return <RecommendationGenerator />;
+    return (
+      <RecommendationGenerator
+        onQuit={() => {
+          setIsGenerating(false);
+        }}
+      />
+    );
   };
 
   const alignment = isGenerating ? "start" : "center";
 
   return (
-    <main className={`flex min-h-screen flex-col items-${alignment} justify-${alignment} p-24`}>
+    <main
+      className={`flex min-h-screen flex-col items-${alignment} justify-${alignment} p-24`}
+    >
       {isGenerating ? renderRecommendationGenerator() : renderDefaultUI()}
     </main>
   );

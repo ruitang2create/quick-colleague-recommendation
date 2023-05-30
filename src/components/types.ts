@@ -1,4 +1,3 @@
-import { ICON_SIZE } from "@/constants";
 import { StaticImageData } from "next/image";
 import { IconType as ReactIconsIconType } from "react-icons";
 
@@ -15,4 +14,16 @@ export interface IconButtonProps extends CommonComponentProps {
   onClick?: () => void;
   disabled?: boolean;
   size?: string;
+}
+
+export interface RecommendationGeneratorProps extends CommonComponentProps {
+  onQuit?: () => void;
+}
+
+export interface Colleague {
+    name: string;
+    title: string;
+    relationship: string;
+    hardSkills: string[];
+    softSkills: string[];
 }

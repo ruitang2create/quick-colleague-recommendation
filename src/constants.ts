@@ -7,3 +7,17 @@ export enum ICON_SIZE {
   XL = "3rem",
   XXL = "5rem",
 }
+
+export enum GENERATION_STEPS {
+  NAME,
+  TITLE,
+  HARD_SKILLS,
+  SOFT_SKILLS,
+}
+
+export enum COLLEAGUE_RELATIONSHIP {
+  PEER = "Peer",
+  SUPERVISOR = "Supervisor",
+  STAFF_MEMBER = "Staff Member",
+  DIFFERENT_TEAM = "Different Team",
+}
