@@ -38,6 +38,12 @@ export interface ChoiceProps extends CommonComponentProps {
   onClick: () => void;
 }
 
+export interface ReviewProps extends CommonComponentProps {
+    header: string;
+    colleague: Colleague;
+    specs: RecommendationSpecs;
+}
+
 export interface Colleague {
   name: string;
   gender: GENDER;

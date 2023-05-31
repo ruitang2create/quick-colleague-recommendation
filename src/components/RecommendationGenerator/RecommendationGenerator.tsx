@@ -16,11 +16,11 @@ import {
   RecommendationSpecs,
 } from "../types";
 import Question from "./Question";
+import Review from "./Review";
 
 export default function RecommendationGenerator({
   onQuit,
 }: RecommendationGeneratorProps): JSX.Element {
-  const [name, setName] = React.useState("your colleague");
   const [colleague, setColleague] = React.useState<Colleague>(defaultColleague);
   const [recommendationSpecs, setRecommendationSpecs] =
     React.useState<RecommendationSpecs>(defaultRecommendationSpecs);
@@ -32,24 +32,30 @@ export default function RecommendationGenerator({
     switch (currStep) {
       case GENERATION_STEPS.NAME:
         setColleague({ ...colleague, name: answer as string });
+        setCurrStep((currStep) => currStep + 1);
         break;
       case GENERATION_STEPS.GENDER:
         setColleague({ ...colleague, gender: answer as GENDER });
+        setCurrStep((currStep) => currStep + 1);
         break;
       case GENERATION_STEPS.TITLE:
         setColleague({ ...colleague, title: answer as string });
+        setCurrStep((currStep) => currStep + 1);
         break;
       case GENERATION_STEPS.RELATIONSHIP:
         setColleague({
           ...colleague,
           relationship: answer as COLLEAGUE_RELATIONSHIP,
         });
+        setCurrStep((currStep) => currStep + 1);
         break;
       case GENERATION_STEPS.HARD_SKILLS:
         setColleague({ ...colleague, hardSkills: answer as string[] });
+        setCurrStep((currStep) => currStep + 1);
         break;
       case GENERATION_STEPS.SOFT_SKILLS:
         setColleague({ ...colleague, softSkills: answer as string[] });
+        setCurrStep((currStep) => currStep + 1);
         break;
       default:
         break;
@@ -57,7 +63,7 @@ export default function RecommendationGenerator({
   };
 
   return (
-    <div>
+    <>
       <div className="flex justify-start items-center">
         <IconButton
           icon={GrFormClose}
@@ -68,7 +74,7 @@ export default function RecommendationGenerator({
         />
         <div className="text-2xl">Generating a new recommendation...</div>
       </div>
-      <div className="flex justify-start items-center">
+      <div className="flex justify-center items-center h-full w-full">
         {currStep < GENERATION_STEPS.REVIEW ? (
           <Question
             step={currStep}
@@ -79,10 +85,10 @@ export default function RecommendationGenerator({
           <Review
             header={GENERATION_QUESTIONS[currStep]}
             colleague={colleague}
-            recommendationSpecs={recommendationSpecs}
+            specs={recommendationSpecs}
           />
         )}
       </div>
-    </div>
+    </>
   );
 }

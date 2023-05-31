@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-${alignment} justify-${alignment} p-24`}
+      className={`flex h-screen flex-col items-${alignment} justify-${alignment} p-24`}
     >
       {isGenerating ? renderRecommendationGenerator() : renderDefaultUI()}
     </main>

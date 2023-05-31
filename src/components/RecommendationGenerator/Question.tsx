@@ -59,7 +59,10 @@ export default function Question({
       <MultipleChoices
         choices={choices}
         onSubmit={onAnswer}
-        isSingleAnswer={step === GENERATION_STEPS.GENDER}
+        isSingleAnswer={
+          step === GENERATION_STEPS.GENDER ||
+          step === GENERATION_STEPS.RELATIONSHIP
+        }
       />
     );
   };
@@ -70,15 +73,17 @@ export default function Question({
         <input
           type="text"
           onChange={(e) => {
-            onAnswer(e.target.value);
+            setAnswerInput(e.target.value);
           }}
+          className="w-full my-4"
         />
         <button
+          className="w-fit bg-blue-300 p-2 rounded-md text-white"
           onClick={() => {
             if (answerInput.length > 0) onAnswer(answerInput);
           }}
         >
-          Submit
+          Next
         </button>
       </div>
     );

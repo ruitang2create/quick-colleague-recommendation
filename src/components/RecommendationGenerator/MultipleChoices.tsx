@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChoiceProps, MultipleChoicesProps } from "../types";
+import styles from "./styles.module.scss";
 
 export default function MultipleChoices({
   isSingleAnswer = false,
@@ -7,33 +8,35 @@ export default function MultipleChoices({
   onSubmit,
 }: MultipleChoicesProps): JSX.Element {
   const [selected, setSelected] = React.useState<string[]>([]);
+
+  useEffect(() => {
+    setSelected([]);
+  }, [choices]);
+
   function Choice({ choice, onClick }: ChoiceProps): JSX.Element {
     const isSelected = selected.includes(choice);
     return (
       <div
-        className="flex flex-col justify-center items-center"
+        className={`flex flex-col justify-center items-center px-2 py-1 rounded-md mx-1 ${
+          styles.choiceButton
+        } ${isSelected ? "bg-gray-950 text-white" : "bg-white text-black"}`}
         role="button"
         tabIndex={0}
         onClick={() => {
           onClick();
         }}
       >
-        <div
-          className={`w-16 h-16 ${
-            isSelected ? "bg-gray-300 text-white" : "bg-white text-black"
-          } rounded-full`}
-        >
-          {choice}
-        </div>
+        {choice}
       </div>
     );
   }
 
   return (
     <div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap my-4">
         {choices.map((choice) => (
           <Choice
+            key={choice}
             choice={choice}
             onClick={() => {
               if (isSingleAnswer) {
