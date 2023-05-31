@@ -1,3 +1,4 @@
+import { COLLEAGUE_RELATIONSHIP, GENDER, GENERATION_STEPS } from "@/constants";
 import { StaticImageData } from "next/image";
 import { IconType as ReactIconsIconType } from "react-icons";
 
@@ -20,10 +21,37 @@ export interface RecommendationGeneratorProps extends CommonComponentProps {
   onQuit?: () => void;
 }
 
+export interface QuestionProps extends CommonComponentProps {
+  step: GENERATION_STEPS;
+  question: string;
+  onAnswer: (answer: string | string[]) => void;
+}
+
+export interface MultipleChoicesProps extends CommonComponentProps {
+  choices: string[];
+  onSubmit: (answer: string | string[]) => void;
+  isSingleAnswer?: boolean;
+}
+
+export interface ChoiceProps extends CommonComponentProps {
+  choice: string;
+  onClick: () => void;
+}
+
 export interface Colleague {
-    name: string;
-    title: string;
-    relationship: string;
-    hardSkills: string[];
-    softSkills: string[];
+  name: string;
+  gender: GENDER;
+  title: string;
+  relationship: COLLEAGUE_RELATIONSHIP;
+  hardSkills: string[];
+  softSkills: string[];
+}
+
+export interface RecommendationSpecs {
+  length?: string;
+  language?: string;
+  template?: string;
+  counterExample?: string;
+  wordsToAvoid?: string[];
+  otherNotes?: string;
 }
