@@ -7,6 +7,7 @@ export default function Question({
   step,
   question,
   onAnswer,
+  onBack,
 }: QuestionProps): JSX.Element {
   const [answerInput, setAnswerInput] = React.useState<string>("");
 
@@ -63,6 +64,7 @@ export default function Question({
           step === GENERATION_STEPS.GENDER ||
           step === GENERATION_STEPS.RELATIONSHIP
         }
+        onBack={onBack}
       />
     );
   };
@@ -77,6 +79,14 @@ export default function Question({
           }}
           className="w-full my-4"
         />
+        {onBack && (
+          <button
+            className="w-fit bg-white p-2 rounded-md text-black border border-black mr-2"
+            onClick={onBack}
+          >
+            Previous
+          </button>
+        )}
         <button
           className="w-fit bg-blue-300 p-2 rounded-md text-white"
           onClick={() => {

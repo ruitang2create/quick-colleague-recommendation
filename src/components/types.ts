@@ -25,11 +25,13 @@ export interface QuestionProps extends CommonComponentProps {
   step: GENERATION_STEPS;
   question: string;
   onAnswer: (answer: string | string[]) => void;
+  onBack?: () => void;
 }
 
 export interface MultipleChoicesProps extends CommonComponentProps {
   choices: string[];
   onSubmit: (answer: string | string[]) => void;
+  onBack?: () => void;
   isSingleAnswer?: boolean;
 }
 

@@ -6,6 +6,7 @@ export default function MultipleChoices({
   isSingleAnswer = false,
   choices,
   onSubmit,
+  onBack,
 }: MultipleChoicesProps): JSX.Element {
   const [selected, setSelected] = React.useState<string[]>([]);
 
@@ -52,6 +53,14 @@ export default function MultipleChoices({
           />
         ))}
       </div>
+      {onBack && (
+        <button
+          className="w-fit bg-white p-2 rounded-md text-black border border-black mr-2"
+          onClick={onBack}
+        >
+          Previous
+        </button>
+      )}
       <button
         className="w-fit bg-blue-300 p-2 rounded-md text-white"
         onClick={() => {

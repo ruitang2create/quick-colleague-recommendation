@@ -62,6 +62,10 @@ export default function RecommendationGenerator({
     }
   };
 
+  const goBack = () => {
+    setCurrStep((currStep) => currStep - 1);
+  };
+
   return (
     <>
       <div className="flex justify-start items-center">
@@ -80,6 +84,7 @@ export default function RecommendationGenerator({
             step={currStep}
             question={GENERATION_QUESTIONS[currStep]}
             onAnswer={answerQuestion}
+            onBack={currStep > 0 ? goBack : undefined}
           />
         ) : (
           <Review
