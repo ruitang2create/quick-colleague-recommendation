@@ -81,14 +81,14 @@ export default function Question({
         />
         {onBack && (
           <button
-            className="w-fit bg-white p-2 rounded-md text-black border border-black mr-2"
+            className="w-fit bg-white p-2 rounded-md text-black shadow-sm mr-2"
             onClick={onBack}
           >
             Previous
           </button>
         )}
         <button
-          className="w-fit bg-blue-300 p-2 rounded-md text-white"
+          className="w-fit bg-blue-300 p-2 rounded-md shadow-sm text-white"
           onClick={() => {
             if (answerInput.length > 0) onAnswer(answerInput);
           }}
