@@ -26,6 +26,7 @@ export interface QuestionProps extends CommonComponentProps {
   question: string;
   onAnswer: (answer: string | string[]) => void;
   onBack?: () => void;
+  defaultChoices?: string[];
 }
 
 export interface MultipleChoicesProps extends CommonComponentProps {

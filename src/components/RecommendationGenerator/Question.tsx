@@ -8,6 +8,7 @@ export default function Question({
   question,
   onAnswer,
   onBack,
+  defaultChoices,
 }: QuestionProps): JSX.Element {
   const [answerInput, setAnswerInput] = React.useState<string>("");
 
@@ -27,23 +28,6 @@ export default function Question({
       choices = Object.values(GENDER);
     } else if (step === GENERATION_STEPS.RELATIONSHIP) {
       choices = Object.values(COLLEAGUE_RELATIONSHIP);
-    } else if (step === GENERATION_STEPS.HARD_SKILLS) {
-      choices = [
-        "Java",
-        "Python",
-        "C++",
-        "C#",
-        "JavaScript",
-        "TypeScript",
-        "React",
-        "Angular",
-        "Vue",
-        "Node.js",
-        "Express",
-        "Django",
-        "Flask",
-        "Spring",
-      ];
     } else if (step === GENERATION_STEPS.SOFT_SKILLS) {
       choices = [
         "Communication",
@@ -58,7 +42,7 @@ export default function Question({
     }
     return (
       <MultipleChoices
-        choices={choices}
+        choices={defaultChoices || choices}
         onSubmit={onAnswer}
         isSingleAnswer={
           step === GENERATION_STEPS.GENDER ||

@@ -17,6 +17,7 @@ import {
 } from "../types";
 import Question from "./Question";
 import Review from "./Review";
+import { getHardSkillsByJob } from "@/lib/apiHelpers";
 
 export default function RecommendationGenerator({
   onQuit,
@@ -27,6 +28,34 @@ export default function RecommendationGenerator({
   const [currStep, setCurrStep] = React.useState<GENERATION_STEPS>(
     GENERATION_STEPS.NAME
   );
+  const [defaultQuestionChoices, setDefaultQuestionChoices] = React.useState<
+    string[] | undefined
+  >();
+
+  /**
+   * Get hard skills through herlper function, and set it as default choices
+   *
+   */
+  const getHardSkills = async () => {
+    try {
+      const hardSkills = await getHardSkillsByJob(colleague.title);
+      setDefaultQuestionChoices(hardSkills);
+    } catch (error) {
+      console.error("Error getting hard skills by job: ", error);
+      setDefaultQuestionChoices(undefined);
+    }
+  };
+
+  React.useEffect(() => {
+    if (
+      currStep === GENERATION_STEPS.HARD_SKILLS &&
+      colleague.title?.length > 0
+    ) {
+      getHardSkills();
+    } else {
+      setDefaultQuestionChoices(undefined);
+    }
+  }, [currStep]);
 
   const answerQuestion = (answer: string | string[]): void => {
     switch (currStep) {
@@ -85,6 +114,7 @@ export default function RecommendationGenerator({
             question={GENERATION_QUESTIONS[currStep]}
             onAnswer={answerQuestion}
             onBack={currStep > 0 ? goBack : undefined}
+            defaultChoices={defaultQuestionChoices}
           />
         ) : (
           <Review
