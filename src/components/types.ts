@@ -66,8 +66,8 @@ export interface Colleague {
 }
 
 export interface RecommendationSpecs {
-  length?: string;
-  language?: string;
+  length: string;
+  language: string;
   template?: string;
   counterExample?: string;
   wordsToAvoid?: string[];

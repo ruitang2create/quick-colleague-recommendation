@@ -51,4 +51,7 @@ export const defaultColleague: Colleague = {
   softSkills: [],
 };
 
-export const defaultRecommendationSpecs: RecommendationSpecs = {};
+export const defaultRecommendationSpecs: RecommendationSpecs = {
+  language: "English",
+  length: "250 words",
+};

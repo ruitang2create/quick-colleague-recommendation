@@ -1,12 +1,23 @@
 import React from "react";
 import { Colleague, ReviewProps } from "../types";
 import Button from "../Button/Button";
+import { getRecommendation } from "@/lib/apiHelpers";
 
 export default function Review({
   header,
   colleague,
   specs,
 }: ReviewProps): JSX.Element {
+  const [recommendation, setRecommendation] = React.useState<string>("");
+  const generate = async () => {
+    try {
+      const res = await getRecommendation(colleague, specs);
+      setRecommendation(res);
+    } catch (error) {
+      console.error("Error generating recommendation: ", error);
+    }
+  };
+
   return (
     <div>
       <div className="bg-stone-200 px-6 py-4 mb-4">
@@ -43,7 +54,8 @@ export default function Review({
           <div>Recommendation Specifications:</div>
         </div>
       }
-      <Button>Generate Recommendation</Button>
+      <Button onClick={generate}>Generate Recommendation</Button>
+      {recommendation.length > 0 ? <div>{recommendation}</div> : null}
     </div>
   );
 }
