@@ -48,6 +48,14 @@ export interface ReviewProps extends CommonComponentProps {
     specs: RecommendationSpecs;
 }
 
+export interface ButtonProps extends CommonComponentProps {
+  appearance?: "primary" | "secondary";
+  onClick?: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  children: React.ReactNode;
+}
+
 export interface Colleague {
   name: string;
   gender: GENDER;
