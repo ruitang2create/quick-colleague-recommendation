@@ -31,18 +31,22 @@ export default function RecommendationGenerator({
   const [defaultQuestionChoices, setDefaultQuestionChoices] = React.useState<
     string[] | undefined
   >();
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   /**
    * Get hard skills through herlper function, and set it as default choices
    *
    */
   const getHardSkills = async () => {
+    setLoading(true);
     try {
       const hardSkills = await getHardSkillsByJob(colleague.title);
       setDefaultQuestionChoices(hardSkills);
     } catch (error) {
       console.error("Error getting hard skills by job: ", error);
       setDefaultQuestionChoices(undefined);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -115,6 +119,7 @@ export default function RecommendationGenerator({
             onAnswer={answerQuestion}
             onBack={currStep > 0 ? goBack : undefined}
             defaultChoices={defaultQuestionChoices}
+            loading={loading}
           />
         ) : (
           <Review

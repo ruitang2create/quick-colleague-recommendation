@@ -9,6 +9,7 @@ export default function Question({
   onAnswer,
   onBack,
   defaultChoices,
+  loading = false,
 }: QuestionProps): JSX.Element {
   const [answerInput, setAnswerInput] = React.useState<string>("");
 
@@ -23,6 +24,7 @@ export default function Question({
     step === GENERATION_STEPS.SOFT_SKILLS;
 
   const renderQuestionChoices = (): JSX.Element => {
+    if (loading)  return <div>Loading...</div>;
     let choices: string[] = [];
     if (step === GENERATION_STEPS.GENDER) {
       choices = Object.values(GENDER);
