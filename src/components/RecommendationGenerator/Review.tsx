@@ -1,5 +1,6 @@
 import React from "react";
 import { Colleague, ReviewProps } from "../types";
+import Button from "../Button/Button";
 
 export default function Review({
   header,
@@ -42,6 +43,7 @@ export default function Review({
           <div>Recommendation Specifications:</div>
         </div>
       }
+      <Button>Generate Recommendation</Button>
     </div>
   );
 }
