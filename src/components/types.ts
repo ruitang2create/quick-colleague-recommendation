@@ -7,6 +7,12 @@ export type CommonComponentProps = {
   style?: React.CSSProperties;
 };
 
+export interface CollapseProps extends CommonComponentProps {
+  title: string;
+  children: React.ReactNode;
+  isOpenByDefault?: boolean;
+}
+
 export type IconType = string | ReactIconsIconType | StaticImageData;
 
 export interface IconButtonProps extends CommonComponentProps {

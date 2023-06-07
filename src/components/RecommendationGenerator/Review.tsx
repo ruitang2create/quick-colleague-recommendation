@@ -2,6 +2,7 @@ import React from "react";
 import { Colleague, ReviewProps } from "../types";
 import Button from "../Button/Button";
 import { getRecommendation } from "@/lib/apiHelpers";
+import Collapse from "../Collapse/Collapse";
 
 export default function Review({
   header,
@@ -49,11 +50,12 @@ export default function Review({
           );
         })}
       </div>
-      {
+      <Collapse title="Recommendation Specifications">
         <div>
-          <div>Recommendation Specifications:</div>
+          <div>A lot of Recommendation Specifications</div>
         </div>
-      }
+      </Collapse>
+
       <Button onClick={generate}>Generate Recommendation</Button>
       {recommendation.length > 0 ? <div>{recommendation}</div> : null}
     </div>
