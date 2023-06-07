@@ -6,6 +6,7 @@ import Collapse from "../Collapse/Collapse";
 import styles from "./styles.module.scss";
 import { BsPersonCircle } from "react-icons/bs";
 import { GrLinkedin } from "react-icons/gr";
+import { MdContentCopy } from "react-icons/md";
 import IconButton from "../IconButton/IconButton";
 import { format } from "date-fns";
 
@@ -45,28 +46,40 @@ export default function Review({
   const renderRecommendation = (): JSX.Element => {
     if (generated && recommendation.length > 0) {
       return (
-        <div className="my-4 border border-gray-300 rounded-sm">
-          <div className="text-lg font-bold text-center border-b border-b-gray-300 py-3">
+        <div className="my-4 border border-slate-500 text-slate-700 rounded-sm">
+          <div className="text-lg font-bold text-center border-b border-b-slate-400 py-4">
             Recommendation Preview
           </div>
-          <div className="flex py-3">
+          <div className="flex px-2 py-4">
             <IconButton
               icon={BsPersonCircle}
               size="3rem"
               alt="Profile"
               disabled
-              className="mx-3"
+              className="mx-2"
             />
             <div>
               <div className="flex items-center">
                 <div className="font-semibold">Your Name</div>
-                <IconButton icon={GrLinkedin} alt="LinkedIn" className="mx-1" size="1rem" />
-                <div className="text-[0.5rem]">&bull;&nbsp;</div>
+                <IconButton
+                  icon={GrLinkedin}
+                  alt="LinkedIn"
+                  className="mx-1"
+                  size="0.9rem"
+                  style={{
+                    filter:
+                      "invert(50%) sepia(70%) saturate(2136%) hue-rotate(11deg) brightness(93%) contrast(83%)",
+                  }}
+                />
+                <div className="text-[0.5rem] text-gray-500">&bull;&nbsp;</div>
                 <div className="text-sm text-gray-500">1st</div>
               </div>
-              <div className="text-sm">Your Job Title</div>
-              <div className="text-sm text-gray-500">{`${format(new Date(), "MMM dd, yyyy")}`}</div>
-              <div className="text-md">{recommendation}</div>
+              <div className="text-sm">Your Title</div>
+              <div className="text-sm text-gray-500">{`${format(
+                new Date(),
+                "MMM dd, yyyy"
+              )}`}</div>
+              <div className="text-md mt-4 mb-4">{recommendation}</div>
             </div>
           </div>
         </div>
@@ -129,15 +142,16 @@ export default function Review({
           <div>A lot of Recommendation Specifications</div>
         </div>
       </Collapse>
-
-      <Button
-        onClick={generateRecommendation}
-        disabled={generating}
-        className="w-full mb-6 text-xl"
-      >
-        {getGenerateButtonText()}
-      </Button>
       {renderRecommendation()}
+      <div className="w-full flex justify-center items-center mb-6 ">
+        <Button
+          onClick={generateRecommendation}
+          disabled={generating}
+          className="max-w-full text-xl px-8"
+        >
+          {getGenerateButtonText()}
+        </Button>
+      </div>
     </div>
   );
 }

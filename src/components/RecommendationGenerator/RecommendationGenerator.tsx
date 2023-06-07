@@ -109,7 +109,7 @@ export default function RecommendationGenerator({
             if (onQuit) onQuit();
           }}
         />
-        <div className="text-2xl">Generating a new recommendation...</div>
+        <div className="text-2xl">Close</div>
       </div>
       <div className="flex justify-center items-center h-full w-full">
         {currStep < GENERATION_STEPS.REVIEW ? (

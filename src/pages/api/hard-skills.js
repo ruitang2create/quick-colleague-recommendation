@@ -29,7 +29,7 @@ export default async function (req, res) {
 
   try {
     const completion = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: "text-davinci-002",
       prompt: generatePrompt(job),
       temperature: 0.6,
       max_tokens: 1000,
@@ -53,5 +53,6 @@ export default async function (req, res) {
 function generatePrompt(job) {
   return `List twenty hard skills for a ${job}. 
   Store the skills in a JSON object containing a field "hardSkills", the value of which is a list of strings.
-  Stringify the JSON object and make it your response. Generate the stringified JSON object so that it can be easily parsed by JSON.parse() method without error.`;
+  Stringify the JSON object and make it your response. 
+  Generate the stringified JSON object without unnecessary spaces or line breaks(except for the spaces within the skill strings) so that it can be easily parsed by JSON.parse() method without error.`;
 }
