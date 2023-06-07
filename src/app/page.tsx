@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/Button/Button";
 import RecommendationGenerator from "@/components/RecommendationGenerator/RecommendationGenerator";
 import React from "react";
 
@@ -11,12 +12,12 @@ export default function Home() {
         <h1 className="text-5xl font-bold mb-16">
           Welcome to Quick Colleague Recommendation
         </h1>
-        <button
-          className="w-fit bg-blue-300 p-2 rounded-md text-white"
+        <Button
+          className="text-xl"
           onClick={() => setIsGenerating(true)}
         >
           New Recommendation
-        </button>
+        </Button>
       </div>
     );
   };

@@ -156,12 +156,17 @@ export default function Review({
             className="max-w-full w-48 text-xl px-8 mb-4"
           >
             <div className="flex items-center">
-              <IconButton icon={MdContentCopy} size="1.25rem" className="mr-2" />
+              <IconButton
+                icon={MdContentCopy}
+                size="1.25rem"
+                className="mr-2"
+              />
               <div>Copy</div>
             </div>
           </Button>
         )}
         <Button
+          appearance={!generated && !generating ? "Primary" : "Secondary"}
           onClick={generateRecommendation}
           disabled={generating}
           className="max-w-full w-48 text-xl px-8"

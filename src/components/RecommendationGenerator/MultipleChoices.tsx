@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { ChoiceProps, MultipleChoicesProps } from "../types";
 import styles from "./styles.module.scss";
+import Button from "../Button/Button";
 
 export default function MultipleChoices({
   isSingleAnswer = false,
@@ -34,7 +35,7 @@ export default function MultipleChoices({
 
   return (
     <div>
-      <div className="flex flex-wrap my-4">
+      <div className="flex flex-wrap my-4 mx-[-0.5rem]">
         {choices.map((choice) => (
           <Choice
             key={choice}
@@ -54,15 +55,13 @@ export default function MultipleChoices({
         ))}
       </div>
       {onBack && (
-        <button
-          className="w-fit bg-white p-2 rounded-md text-black shadow-sm mr-2"
-          onClick={onBack}
-        >
+        <Button className="text-lg mr-4" appearance="Secondary" onClick={onBack}>
           Previous
-        </button>
+        </Button>
       )}
-      <button
-        className="w-fit bg-blue-300 p-2 rounded-md shadow-sm text-white"
+      <Button
+        className="text-lg"
+        appearance="Primary"
         onClick={() => {
           if (isSingleAnswer) {
             onSubmit(selected[0]);
@@ -72,7 +71,7 @@ export default function MultipleChoices({
         }}
       >
         Next
-      </button>
+      </Button>
     </div>
   );
 }

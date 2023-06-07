@@ -5,14 +5,14 @@ export default function Button({
   className = "",
   style = {},
   children,
-  appearance = "primary",
+  appearance = "Primary",
   disabled = false,
   loading = false,
   onClick,
 }: ButtonProps): JSX.Element {
   return (
     <div
-      className={`button button-${appearance} ${className}`}
+      className={`button button${appearance} ${className}`}
       style={style}
       role={disabled ? undefined : "button"}
       tabIndex={disabled ? undefined : 0}

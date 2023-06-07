@@ -55,7 +55,7 @@ export interface ReviewProps extends CommonComponentProps {
 }
 
 export interface ButtonProps extends CommonComponentProps {
-  appearance?: "primary" | "secondary";
+  appearance?: "Primary" | "Secondary";
   onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;

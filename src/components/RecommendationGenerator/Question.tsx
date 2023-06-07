@@ -2,6 +2,7 @@ import React, { use, useEffect } from "react";
 import { QuestionProps } from "../types";
 import { COLLEAGUE_RELATIONSHIP, GENDER, GENERATION_STEPS } from "@/constants";
 import MultipleChoices from "./MultipleChoices";
+import Button from "../Button/Button";
 
 export default function Question({
   step,
@@ -24,7 +25,7 @@ export default function Question({
     step === GENERATION_STEPS.SOFT_SKILLS;
 
   const renderQuestionChoices = (): JSX.Element => {
-    if (loading)  return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
     let choices: string[] = [];
     if (step === GENERATION_STEPS.GENDER) {
       choices = Object.values(GENDER);
@@ -63,31 +64,29 @@ export default function Question({
           onChange={(e) => {
             setAnswerInput(e.target.value);
           }}
-          className="w-full my-4"
+          className="w-full my-4 px-4 py-2"
         />
         {onBack && (
-          <button
-            className="w-fit bg-white p-2 rounded-md text-black shadow-sm mr-2"
-            onClick={onBack}
-          >
+          <Button className="text-lg mr-4" appearance="Secondary" onClick={onBack}>
             Previous
-          </button>
+          </Button>
         )}
-        <button
-          className="w-fit bg-blue-300 p-2 rounded-md shadow-sm text-white"
+        <Button
+          className="text-lg"
+          appearance="Primary"
           onClick={() => {
             if (answerInput.length > 0) onAnswer(answerInput);
           }}
         >
           Next
-        </button>
+        </Button>
       </div>
     );
   };
 
   return (
-    <div>
-      <div>{question}</div>
+    <div className="text-xl text-slate-700">
+      <div className="text-2xl font-bold">{question}</div>
       {isMultipleChoiceQuestion
         ? renderQuestionChoices()
         : renderQuestionInput()}
