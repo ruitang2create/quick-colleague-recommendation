@@ -47,7 +47,7 @@ export default function Review({
     if (generated && recommendation.length > 0) {
       return (
         <div className="my-4 border border-slate-500 text-slate-700 rounded-sm">
-          <div className="text-lg font-bold text-center border-b border-b-slate-400 py-4">
+          <div className="text-lg font-bold text-start border-b border-b-slate-400 px-6 py-4">
             Recommendation Preview
           </div>
           <div className="flex px-2 py-4">
@@ -155,7 +155,10 @@ export default function Review({
             }}
             className="max-w-full w-48 text-xl px-8 mb-4"
           >
-            Copy
+            <div className="flex items-center">
+              <IconButton icon={MdContentCopy} size="1.25rem" className="mr-2" />
+              <div>Copy</div>
+            </div>
           </Button>
         )}
         <Button
