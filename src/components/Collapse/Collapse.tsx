@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { CollapseProps } from "../types";
 import IconButton from "../IconButton/IconButton";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
-import styles from "./styles.module.scss";
 
 export default function Collapse({
   title,
