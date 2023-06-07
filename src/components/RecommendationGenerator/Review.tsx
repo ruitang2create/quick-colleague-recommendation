@@ -143,11 +143,25 @@ export default function Review({
         </div>
       </Collapse>
       {renderRecommendation()}
-      <div className="w-full flex justify-center items-center mb-6 ">
+      <div className="w-full flex flex-col justify-center items-center mb-6 ">
+        {generated && recommendation.length > 0 && (
+          <Button
+            onClick={() => {
+              if (navigator) {
+                navigator.clipboard.writeText(recommendation).then(() => {
+                  alert("Copied to clipboard!");
+                });
+              }
+            }}
+            className="max-w-full w-48 text-xl px-8 mb-4"
+          >
+            Copy
+          </Button>
+        )}
         <Button
           onClick={generateRecommendation}
           disabled={generating}
-          className="max-w-full text-xl px-8"
+          className="max-w-full w-48 text-xl px-8"
         >
           {getGenerateButtonText()}
         </Button>
