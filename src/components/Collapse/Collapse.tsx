@@ -8,6 +8,8 @@ export default function Collapse({
   title,
   children,
   isOpenByDefault = false,
+  className = "",
+  style = {},
 }: CollapseProps): JSX.Element {
   const contentRef = React.useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = React.useState<boolean>(isOpenByDefault);
@@ -29,7 +31,7 @@ export default function Collapse({
   }, [isOpen]);
 
   return (
-    <div className="border">
+    <div className={`border ${className}`} style={style}>
       <div className="flex border-b px-6 py-4">
         <div className="text-lg font-bold w-full">{title}</div>
         <IconButton
