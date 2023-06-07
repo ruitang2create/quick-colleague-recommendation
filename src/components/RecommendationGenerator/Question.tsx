@@ -8,6 +8,8 @@ export default function Question({
   question,
   onAnswer,
   onBack,
+  defaultChoices,
+  loading = false,
 }: QuestionProps): JSX.Element {
   const [answerInput, setAnswerInput] = React.useState<string>("");
 
@@ -22,28 +24,12 @@ export default function Question({
     step === GENERATION_STEPS.SOFT_SKILLS;
 
   const renderQuestionChoices = (): JSX.Element => {
+    if (loading)  return <div>Loading...</div>;
     let choices: string[] = [];
     if (step === GENERATION_STEPS.GENDER) {
       choices = Object.values(GENDER);
     } else if (step === GENERATION_STEPS.RELATIONSHIP) {
       choices = Object.values(COLLEAGUE_RELATIONSHIP);
-    } else if (step === GENERATION_STEPS.HARD_SKILLS) {
-      choices = [
-        "Java",
-        "Python",
-        "C++",
-        "C#",
-        "JavaScript",
-        "TypeScript",
-        "React",
-        "Angular",
-        "Vue",
-        "Node.js",
-        "Express",
-        "Django",
-        "Flask",
-        "Spring",
-      ];
     } else if (step === GENERATION_STEPS.SOFT_SKILLS) {
       choices = [
         "Communication",
@@ -58,7 +44,7 @@ export default function Question({
     }
     return (
       <MultipleChoices
-        choices={choices}
+        choices={defaultChoices || choices}
         onSubmit={onAnswer}
         isSingleAnswer={
           step === GENERATION_STEPS.GENDER ||
@@ -81,14 +67,14 @@ export default function Question({
         />
         {onBack && (
           <button
-            className="w-fit bg-white p-2 rounded-md text-black border border-black mr-2"
+            className="w-fit bg-white p-2 rounded-md text-black shadow-sm mr-2"
             onClick={onBack}
           >
             Previous
           </button>
         )}
         <button
-          className="w-fit bg-blue-300 p-2 rounded-md text-white"
+          className="w-fit bg-blue-300 p-2 rounded-md shadow-sm text-white"
           onClick={() => {
             if (answerInput.length > 0) onAnswer(answerInput);
           }}

@@ -7,6 +7,12 @@ export type CommonComponentProps = {
   style?: React.CSSProperties;
 };
 
+export interface CollapseProps extends CommonComponentProps {
+  title: string;
+  children: React.ReactNode;
+  isOpenByDefault?: boolean;
+}
+
 export type IconType = string | ReactIconsIconType | StaticImageData;
 
 export interface IconButtonProps extends CommonComponentProps {
@@ -26,6 +32,8 @@ export interface QuestionProps extends CommonComponentProps {
   question: string;
   onAnswer: (answer: string | string[]) => void;
   onBack?: () => void;
+  defaultChoices?: string[];
+  loading?: boolean;
 }
 
 export interface MultipleChoicesProps extends CommonComponentProps {
@@ -46,6 +54,14 @@ export interface ReviewProps extends CommonComponentProps {
     specs: RecommendationSpecs;
 }
 
+export interface ButtonProps extends CommonComponentProps {
+  appearance?: "primary" | "secondary";
+  onClick?: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  children: React.ReactNode;
+}
+
 export interface Colleague {
   name: string;
   gender: GENDER;
@@ -56,8 +72,8 @@ export interface Colleague {
 }
 
 export interface RecommendationSpecs {
-  length?: string;
-  language?: string;
+  length: string;
+  language: string;
   template?: string;
   counterExample?: string;
   wordsToAvoid?: string[];
