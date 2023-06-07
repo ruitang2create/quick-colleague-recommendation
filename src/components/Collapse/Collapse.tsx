@@ -31,8 +31,8 @@ export default function Collapse({
   }, [isOpen]);
 
   return (
-    <div className={`border ${className}`} style={style}>
-      <div className="flex border-b px-6 py-4">
+    <div className={`border rounded-sm border-slate-500 text-slate-700 ${className}`} style={style}>
+      <div className={`flex ${isOpen ? "border-b border-b-slate-400" : ""} px-6 py-4`}>
         <div className="text-lg font-bold w-full">{title}</div>
         <IconButton
           icon={isOpen ? expandLessIcon : expandMoreIcon}

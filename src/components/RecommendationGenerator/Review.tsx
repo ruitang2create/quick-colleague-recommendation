@@ -21,8 +21,7 @@ export default function Review({
 
   return (
     <div>
-      <div className="bg-stone-200 px-6 py-4 mb-4">
-        <div className="text-lg font-bold mb-4">Colleague Information:</div>
+      <Collapse title="Colleague Information">
         {Object.keys(colleague).map((key) => {
           const head = key.charAt(0).toUpperCase() + key.slice(1);
           const value = colleague[key as keyof Colleague];
@@ -44,12 +43,12 @@ export default function Review({
           }
           return (
             <div className="my-2" key={key}>
-              <div className="border-b border-b-stone-500">{head}</div>
+              <div className="border-b border-b-slate-400">{head}</div>
               {valueElement}
             </div>
           );
         })}
-      </div>
+      </Collapse>
       <Collapse title="Recommendation Specifications">
         <div>
           <div>A lot of Recommendation Specifications</div>
