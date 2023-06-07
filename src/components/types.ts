@@ -10,7 +10,7 @@ export type CommonComponentProps = {
 export interface CollapseProps extends CommonComponentProps {
   title: string;
   children: React.ReactNode;
-  isOpenByDefault?: boolean;
+  isOpen?: boolean;
 }
 
 export type IconType = string | ReactIconsIconType | StaticImageData;

@@ -7,35 +7,46 @@ import styles from "./styles.module.scss";
 export default function Collapse({
   title,
   children,
-  isOpenByDefault = false,
+  isOpen = false,
   className = "",
   style = {},
 }: CollapseProps): JSX.Element {
   const contentRef = React.useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = React.useState<boolean>(isOpenByDefault);
+  const [expanded, setIsExpanded] = React.useState<boolean>(isOpen);
   const [expandLessIcon, expandMoreIcon] = [
     MdOutlineExpandLess,
     MdOutlineExpandMore,
   ];
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
+    setIsExpanded(!expanded);
   };
 
   useEffect(() => {
     if (contentRef.current) {
-      contentRef.current.style.maxHeight = isOpen
+      contentRef.current.style.maxHeight = expanded
         ? `${contentRef.current.scrollHeight}px`
         : "0px";
     }
+  }, [expanded]);
+
+  useEffect(() => {
+    setIsExpanded(isOpen);
   }, [isOpen]);
 
   return (
-    <div className={`border rounded-sm border-slate-500 text-slate-700 ${className}`} style={style}>
-      <div className={`flex ${isOpen ? "border-b border-b-slate-400" : ""} px-6 py-4`}>
+    <div
+      className={`border rounded-sm border-slate-500 text-slate-700 ${className}`}
+      style={style}
+    >
+      <div
+        className={`flex ${
+          expanded ? "border-b border-b-slate-400" : ""
+        } px-6 py-4`}
+      >
         <div className="text-lg font-bold w-full">{title}</div>
         <IconButton
-          icon={isOpen ? expandLessIcon : expandMoreIcon}
+          icon={expanded ? expandLessIcon : expandMoreIcon}
           alt="Expand"
           onClick={handleToggle}
         />

@@ -9,19 +9,37 @@ export default function Review({
   colleague,
   specs,
 }: ReviewProps): JSX.Element {
+  const [generated, setGenerated] = React.useState<boolean>(false);
+  const [generating, setGenerating] = React.useState<boolean>(false);
   const [recommendation, setRecommendation] = React.useState<string>("");
-  const generate = async () => {
+  const generateRecommendation = async () => {
     try {
+      setRecommendation("");
+      setGenerating(true);
+      setGenerated(false);
       const res = await getRecommendation(colleague, specs);
       setRecommendation(res);
+      setGenerated(true);
     } catch (error) {
       console.error("Error generating recommendation: ", error);
+    } finally {
+      setGenerating(false);
+    }
+  };
+
+  const getGenerateButtonText = (): string => {
+    if (generating) {
+      return "Generating...";
+    } else if (generated) {
+      return "Regenerate";
+    } else {
+      return "Generate";
     }
   };
 
   return (
     <div>
-      <Collapse title="Colleague Information">
+      <Collapse title="Colleague Information" isOpen={!generated}>
         {Object.keys(colleague).map((key) => {
           const head = key.charAt(0).toUpperCase() + key.slice(1);
           const value = colleague[key as keyof Colleague];
@@ -49,13 +67,15 @@ export default function Review({
           );
         })}
       </Collapse>
-      <Collapse title="Recommendation Specifications">
+      <Collapse title="Recommendation Specifications" isOpen={!generated}>
         <div>
           <div>A lot of Recommendation Specifications</div>
         </div>
       </Collapse>
 
-      <Button onClick={generate}>Generate Recommendation</Button>
+      <Button onClick={generateRecommendation} disabled={generating}>
+        {getGenerateButtonText()}
+      </Button>
       {recommendation.length > 0 ? <div>{recommendation}</div> : null}
     </div>
   );
